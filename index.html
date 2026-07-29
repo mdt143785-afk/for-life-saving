@@ -256,5 +256,12 @@ const app = initializeApp(firebaseConfig);
 
 console.log("Firebase Connected");
 </script>
+  <script type="module">
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const db = getFirestore();
+
+console.log("Firestore Connected");
+</script>
 </body>
 </html>
