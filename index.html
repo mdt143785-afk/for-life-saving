@@ -240,6 +240,21 @@ update();
 update();
 
 </script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDS4IxHkIZHoBI2NhX1-L-eSK2rX8LOjMU",
+  authDomain: "for-life-saving-a5e6f.firebaseapp.com",
+  projectId: "for-life-saving-a5e6f",
+  storageBucket: "for-life-saving-a5e6f.firebasestorage.app",
+  messagingSenderId: "479419647294",
+  appId: "1:479419647294:web:7ce1c509881893c8cf186f"
+};
+
+const app = initializeApp(firebaseConfig);
+
+console.log("Firebase Connected");
+</script>
 </body>
 </html>
