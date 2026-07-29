@@ -31,14 +31,8 @@ border-radius:25px;
 box-shadow:0 0 20px #222;
 }
 
-.box{
-display:flex;
-justify-content:space-around;
-text-align:center;
-}
-
 .number{
-font-size:30px;
+font-size:32px;
 color:#ffd700;
 font-weight:bold;
 }
@@ -52,12 +46,25 @@ margin:8px;
 }
 
 button{
-padding:14px 25px;
+padding:14px 22px;
 border:none;
 border-radius:30px;
 background:#ffd700;
 font-weight:bold;
 margin:5px;
+}
+
+.progress{
+background:#333;
+height:20px;
+border-radius:20px;
+overflow:hidden;
+}
+
+.bar{
+height:20px;
+background:#ffd700;
+width:0%;
 }
 
 .history{
@@ -78,32 +85,34 @@ margin-top:10px;
 </div>
 
 
-<div class="card box">
-
-<div>
-<h3>মোট জমা</h3>
-<div class="number">৳ <span id="income">0</span></div>
+<div class="card">
+<h2>💰 বর্তমান সঞ্চয়</h2>
+<div class="number">৳ <span id="total">0</span></div>
 </div>
 
-<div>
-<h3>মোট খরচ</h3>
-<div class="number">৳ <span id="expense">0</span></div>
+
+<div class="card">
+<h2>🎯 সঞ্চয়ের লক্ষ্য</h2>
+
+<input id="target" type="number" placeholder="লক্ষ্য টাকা">
+
+<br>
+
+<button onclick="setTarget()">লক্ষ্য সেট করুন</button>
+
+<p id="goalText">লক্ষ্য সেট করা হয়নি</p>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
 </div>
+
+<p id="percent">0%</p>
 
 </div>
 
 
 <div class="card">
-<h2>বর্তমান সঞ্চয়</h2>
-<div class="number">
-৳ <span id="total">0</span>
-</div>
-</div>
-
-
-<div class="card">
-
-<h2>নতুন লেনদেন</h2>
+<h2>➕ লেনদেন</h2>
 
 <input id="amount" type="number" placeholder="টাকার পরিমাণ">
 
@@ -111,13 +120,12 @@ margin-top:10px;
 
 <button onclick="addMoney()">💰 জমা</button>
 
-<button onclick="addExpense()">💸 খরচ</button>
+<button onclick="expense()">💸 খরচ</button>
 
 </div>
 
 
 <div class="card">
-
 <h2>📋 ইতিহাস</h2>
 
 <div id="history">
@@ -130,8 +138,7 @@ margin-top:10px;
 <script>
 
 let total=Number(localStorage.getItem("total")||0);
-let income=Number(localStorage.getItem("income")||0);
-let expense=Number(localStorage.getItem("expense")||0);
+let target=Number(localStorage.getItem("target")||0);
 
 let history=JSON.parse(localStorage.getItem("history")||"[]");
 
@@ -139,35 +146,43 @@ let history=JSON.parse(localStorage.getItem("history")||"[]");
 function update(){
 
 document.getElementById("total").innerHTML=total;
-document.getElementById("income").innerHTML=income;
-document.getElementById("expense").innerHTML=expense;
+
+let p=target ? Math.floor((total/target)*100):0;
+
+if(p>100)p=100;
+
+document.getElementById("bar").style.width=p+"%";
+document.getElementById("percent").innerHTML=p+"% পূর্ণ";
+
+document.getElementById("goalText").innerHTML=
+target ? "লক্ষ্য: ৳ "+target : "লক্ষ্য সেট করা হয়নি";
+
 
 let h="";
 
-history.forEach(item=>{
-h += "<div class='history'>"+
-item.type+" : ৳"+item.amount+
-"<br>"+item.date+
+history.forEach(i=>{
+h+="<div class='history'>"+
+i.type+" : ৳"+i.amount+
+"<br>"+i.date+
 "</div>";
 });
 
-document.getElementById("history").innerHTML=h || "কোনো লেনদেন নেই";
+document.getElementById("history").innerHTML=h||"কোনো লেনদেন নেই";
 
 }
 
 
 function addMoney(){
 
-let amount=Number(document.getElementById("amount").value);
+let a=Number(document.getElementById("amount").value);
 
-if(amount){
+if(a){
 
-total+=amount;
-income+=amount;
+total+=a;
 
 history.unshift({
 type:"জমা",
-amount:amount,
+amount:a,
 date:new Date().toLocaleString()
 });
 
@@ -178,24 +193,34 @@ save();
 }
 
 
-function addExpense(){
+function expense(){
 
-let amount=Number(document.getElementById("amount").value);
+let a=Number(document.getElementById("amount").value);
 
-if(amount){
+if(a){
 
-total-=amount;
-expense+=amount;
+total-=a;
 
 history.unshift({
 type:"খরচ",
-amount:amount,
+amount:a,
 date:new Date().toLocaleString()
 });
 
 save();
 
 }
+
+}
+
+
+function setTarget(){
+
+target=Number(document.getElementById("target").value);
+
+localStorage.setItem("target",target);
+
+update();
 
 }
 
@@ -203,8 +228,6 @@ save();
 function save(){
 
 localStorage.setItem("total",total);
-localStorage.setItem("income",income);
-localStorage.setItem("expense",expense);
 localStorage.setItem("history",JSON.stringify(history));
 
 document.getElementById("amount").value="";
