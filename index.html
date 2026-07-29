@@ -2,110 +2,168 @@
 <html>
 <head>
 <title>For Life Saving</title>
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#0b0b0f;
-    color:white;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#09090b;
+ color:white;
 }
 
 .header{
-    background:linear-gradient(135deg,#111827,#1f2937);
-    padding:35px 20px;
-    text-align:center;
+ text-align:center;
+ padding:35px 15px;
+ background:linear-gradient(135deg,#111827,#000);
 }
 
 .header h1{
-    color:#f5c542;
-    font-size:35px;
-    margin:0;
-}
-
-.header p{
-    color:#ddd;
-    font-size:18px;
+ color:#ffd700;
+ font-size:38px;
 }
 
 .card{
-    background:#161b22;
-    margin:25px 15px;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 0 20px rgba(245,197,66,0.2);
-}
-
-.card h2{
-    color:#f5c542;
+ background:#18181b;
+ margin:20px;
+ padding:25px;
+ border-radius:25px;
+ box-shadow:0 0 25px #000;
+ text-align:center;
 }
 
 .balance{
-    font-size:35px;
-    font-weight:bold;
-    color:white;
+ font-size:40px;
+ color:#ffd700;
+ font-weight:bold;
+}
+
+input{
+ width:80%;
+ padding:15px;
+ border-radius:15px;
+ border:none;
+ margin:10px;
+ font-size:18px;
 }
 
 button{
-    background:#f5c542;
-    color:#111;
-    border:none;
-    padding:14px 30px;
-    border-radius:30px;
-    font-size:17px;
-    font-weight:bold;
-    margin-top:15px;
+ padding:15px 25px;
+ margin:8px;
+ border:none;
+ border-radius:30px;
+ font-size:17px;
+ font-weight:bold;
+ cursor:pointer;
+ background:linear-gradient(45deg,#ffd700,#ff9900);
+ color:#111;
+ box-shadow:0 0 15px #ffd700;
 }
 
-.footer{
-    text-align:center;
-    padding:20px;
-    color:#aaa;
+button:hover{
+ transform:scale(1.05);
 }
+
+.history{
+ text-align:left;
+ color:#ddd;
+}
+
 </style>
-
 </head>
 
 <body>
 
 <div class="header">
 <h1>For Life Saving</h1>
-<p>আপনার ভবিষ্যতের জন্য স্মার্ট সঞ্চয়</p>
-</div>
-
-
-<div class="card">
-<h2>স্বাগতম 👋</h2>
-<p>আজ থেকেই আপনার সঞ্চয়ের যাত্রা শুরু করুন।</p>
-<button>Start Saving</button>
+<p>স্মার্টভাবে সঞ্চয় করুন, ভবিষ্যৎ গড়ুন</p>
 </div>
 
 
 <div class="card">
 <h2>মোট সঞ্চয়</h2>
 <div class="balance">
-৳ 0
+৳ <span id="total">0</span>
 </div>
-<p>আপনার জমা করা টাকা এখানে দেখা যাবে।</p>
 </div>
 
 
 <div class="card">
-<h2>কেন For Life Saving?</h2>
-<p>
-✔ সহজ সঞ্চয় ব্যবস্থা<br>
-✔ ভবিষ্যতের পরিকল্পনা<br>
-✔ নিজের টাকা নিজের নিয়ন্ত্রণে
-</p>
+
+<h2>লেনদেন যোগ করুন</h2>
+
+<input id="amount" type="number" placeholder="টাকার পরিমাণ">
+
+<br>
+
+<button onclick="addMoney()">💰 টাকা জমা</button>
+
+<button onclick="removeMoney()">💸 খরচ</button>
+
 </div>
 
 
-<div class="footer">
-© 2026 For Life Saving
+<div class="card">
+<h2>ইতিহাস</h2>
+<div class="history" id="history">
+কোনো লেনদেন নেই
+</div>
 </div>
 
+
+<script>
+
+let total = localStorage.getItem("saving") || 0;
+
+document.getElementById("total").innerHTML = total;
+
+
+function addMoney(){
+
+let amount=document.getElementById("amount").value;
+
+if(amount){
+
+total = Number(total)+Number(amount);
+
+save("জমা +"+amount);
+
+}
+
+}
+
+
+function removeMoney(){
+
+let amount=document.getElementById("amount").value;
+
+if(amount){
+
+total = Number(total)-Number(amount);
+
+save("খরচ -"+amount);
+
+}
+
+}
+
+
+function save(text){
+
+localStorage.setItem("saving",total);
+
+document.getElementById("total").innerHTML=total;
+
+let old=document.getElementById("history").innerHTML;
+
+document.getElementById("history").innerHTML=
+text+" টাকা<br>"+old;
+
+document.getElementById("amount").value="";
+
+}
+
+</script>
 
 </body>
 </html>
