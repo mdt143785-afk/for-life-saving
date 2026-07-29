@@ -6,70 +6,65 @@
 
 <style>
 body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#080808;
- color:white;
+margin:0;
+font-family:Arial,sans-serif;
+background:#090909;
+color:white;
 }
 
 .header{
- text-align:center;
- padding:30px;
- background:linear-gradient(135deg,#111,#333);
+text-align:center;
+padding:30px;
+background:linear-gradient(135deg,#111,#333);
 }
 
 .header h1{
- color:#ffd700;
- font-size:38px;
+color:#ffd700;
+font-size:38px;
 }
 
 .card{
- background:#171717;
- margin:20px;
- padding:25px;
- border-radius:25px;
- text-align:center;
- box-shadow:0 0 20px #222;
+background:#181818;
+margin:20px;
+padding:20px;
+border-radius:25px;
+box-shadow:0 0 20px #222;
+}
+
+.box{
+display:flex;
+justify-content:space-around;
+text-align:center;
 }
 
 .number{
- font-size:35px;
- color:#ffd700;
- font-weight:bold;
+font-size:30px;
+color:#ffd700;
+font-weight:bold;
 }
 
 input{
- width:80%;
- padding:14px;
- border-radius:15px;
- border:none;
- margin:8px;
- font-size:16px;
+width:85%;
+padding:14px;
+border-radius:15px;
+border:none;
+margin:8px;
 }
 
 button{
- padding:14px 25px;
- margin:8px;
- border:none;
- border-radius:30px;
- background:#ffd700;
- color:#111;
- font-weight:bold;
- font-size:16px;
- box-shadow:0 0 15px #ffd700;
+padding:14px 25px;
+border:none;
+border-radius:30px;
+background:#ffd700;
+font-weight:bold;
+margin:5px;
 }
 
-.progress{
- background:#333;
- border-radius:20px;
- overflow:hidden;
- height:20px;
-}
-
-.bar{
- height:20px;
- background:#ffd700;
- width:0%;
+.history{
+background:#222;
+padding:12px;
+border-radius:15px;
+margin-top:10px;
 }
 
 </style>
@@ -82,88 +77,144 @@ button{
 <p>স্মার্ট সঞ্চয়, সুন্দর ভবিষ্যৎ</p>
 </div>
 
+
+<div class="card box">
+
+<div>
+<h3>মোট জমা</h3>
+<div class="number">৳ <span id="income">0</span></div>
+</div>
+
+<div>
+<h3>মোট খরচ</h3>
+<div class="number">৳ <span id="expense">0</span></div>
+</div>
+
+</div>
+
+
 <div class="card">
 <h2>বর্তমান সঞ্চয়</h2>
-<div class="number">৳ <span id="total">0</span></div>
+<div class="number">
+৳ <span id="total">0</span>
 </div>
-
-<div class="card">
-<h2>🎯 সঞ্চয়ের লক্ষ্য</h2>
-
-<input id="target" type="number" placeholder="লক্ষ্য টাকা">
-
-<br>
-
-<button onclick="setTarget()">লক্ষ্য সেট করুন</button>
-
-<p>অগ্রগতি</p>
-
-<div class="progress">
-<div class="bar" id="bar"></div>
-</div>
-
-<p id="percent">0%</p>
-
 </div>
 
 
 <div class="card">
-<h2>টাকা যোগ করুন</h2>
+
+<h2>নতুন লেনদেন</h2>
 
 <input id="amount" type="number" placeholder="টাকার পরিমাণ">
 
 <br>
 
-<button onclick="add()">💰 জমা</button>
+<button onclick="addMoney()">💰 জমা</button>
 
-<button onclick="remove()">💸 খরচ</button>
+<button onclick="addExpense()">💸 খরচ</button>
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 ইতিহাস</h2>
+
+<div id="history">
+কোনো লেনদেন নেই
+</div>
 
 </div>
 
 
 <script>
 
-let total=Number(localStorage.getItem("saving")||0);
-let target=Number(localStorage.getItem("target")||0);
+let total=Number(localStorage.getItem("total")||0);
+let income=Number(localStorage.getItem("income")||0);
+let expense=Number(localStorage.getItem("expense")||0);
 
-update();
-
-
-function add(){
-let a=Number(document.getElementById("amount").value);
-total+=a;
-localStorage.setItem("saving",total);
-update();
-}
-
-
-function remove(){
-let a=Number(document.getElementById("amount").value);
-total-=a;
-localStorage.setItem("saving",total);
-update();
-}
-
-
-function setTarget(){
-target=Number(document.getElementById("target").value);
-localStorage.setItem("target",target);
-update();
-}
+let history=JSON.parse(localStorage.getItem("history")||"[]");
 
 
 function update(){
 
 document.getElementById("total").innerHTML=total;
+document.getElementById("income").innerHTML=income;
+document.getElementById("expense").innerHTML=expense;
 
-let p= target ? Math.floor((total/target)*100):0;
+let h="";
 
-if(p>100)p=100;
+history.forEach(item=>{
+h += "<div class='history'>"+
+item.type+" : ৳"+item.amount+
+"<br>"+item.date+
+"</div>";
+});
 
-document.getElementById("bar").style.width=p+"%";
-document.getElementById("percent").innerHTML=p+"% সম্পন্ন";
+document.getElementById("history").innerHTML=h || "কোনো লেনদেন নেই";
 
 }
+
+
+function addMoney(){
+
+let amount=Number(document.getElementById("amount").value);
+
+if(amount){
+
+total+=amount;
+income+=amount;
+
+history.unshift({
+type:"জমা",
+amount:amount,
+date:new Date().toLocaleString()
+});
+
+save();
+
+}
+
+}
+
+
+function addExpense(){
+
+let amount=Number(document.getElementById("amount").value);
+
+if(amount){
+
+total-=amount;
+expense+=amount;
+
+history.unshift({
+type:"খরচ",
+amount:amount,
+date:new Date().toLocaleString()
+});
+
+save();
+
+}
+
+}
+
+
+function save(){
+
+localStorage.setItem("total",total);
+localStorage.setItem("income",income);
+localStorage.setItem("expense",expense);
+localStorage.setItem("history",JSON.stringify(history));
+
+document.getElementById("amount").value="";
+
+update();
+
+}
+
+
+update();
 
 </script>
 
