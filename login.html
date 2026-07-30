@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login - For Life Saving</title>
+
+<style>
+
+body{
+background:#0f172a;
+color:white;
+font-family:Arial,sans-serif;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.box{
+background:#1e293b;
+padding:30px;
+border-radius:20px;
+width:90%;
+max-width:350px;
+text-align:center;
+}
+
+h1{
+color:#FFD700;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#334155;
+color:white;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#FFD700;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="box">
+
+<h1>
+💰 For Life Saving
+</h1>
+
+<h3>
+Login
+</h3>
+
+
+<input 
+type="email" 
+id="email"
+placeholder="Email">
+
+
+<input 
+type="password"
+id="password"
+placeholder="Password">
+
+
+<button onclick="login()">
+Login
+</button>
+
+
+<button onclick="register()">
+Create Account
+</button>
+
+
+<p id="msg"></p>
+
+
+</div>
+
+
+<script type="module" src="login.js"></script>
+
+
+</body>
+
+</html>
