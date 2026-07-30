@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>For Life Saving</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -10,551 +12,218 @@
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
-background:
-linear-gradient(135deg,#020617,#0f172a,#1e293b);
-color:white;
-padding:20px;
-animation:fadeIn 1s ease;
-}
-
-
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+    background:#0f172a;
+    color:white;
+    padding:20px;
 }
 
 
 .header{
-text-align:center;
-margin-bottom:25px;
-animation:slideDown 1s ease;
-}
-
-
-@keyframes slideDown{
-from{
-transform:translateY(-40px);
-opacity:0;
-}
-to{
-transform:translateY(0);
-opacity:1;
-}
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
 }
 
 
 .logo{
-font-size:40px;
-font-weight:700;
-color:#FFD700;
-text-shadow:0 0 20px #FFD700;
+    font-size:28px;
+    font-weight:700;
+    color:#FFD700;
 }
 
-
-.subtitle{
-color:#cbd5e1;
-margin-top:8px;
-}
-
-
-.card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.1);
-border-radius:25px;
-padding:22px;
-margin-bottom:20px;
-box-shadow:
-0 10px 30px rgba(0,0,0,.4);
-animation:cardShow .8s ease;
-transition:.4s;
-}
-
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:
-0 15px 40px rgba(255,215,0,.15);
-}
-
-
-@keyframes cardShow{
-from{
-opacity:0;
-transform:scale(.9);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
-
-
-.balance{
-font-size:42px;
-font-weight:bold;
-color:#FFD700;
-margin-top:15px;
-}
-
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-top:20px;
-}
-
-
-.small-card{
-background:rgba(255,255,255,.07);
-padding:18px;
-border-radius:20px;
-text-align:center;
-}
-
-
-.small-card p{
-font-size:25px;
-color:#FFD700;
-font-weight:bold;
-margin-top:8px;
-}
-
-
-.progress{
-height:16px;
-background:#1e293b;
-border-radius:20px;
-overflow:hidden;
-margin-top:15px;
-}
-
-
-.bar{
-height:100%;
-background:linear-gradient(90deg,#FFD700,#ff9800);
-width:0%;
-animation:load 2s ease;
-transition:1s;
-}
-
-
-@keyframes load{
-from{
-width:0;
-}
-}
-
-
-input{
-width:100%;
-padding:15px;
-margin-top:12px;
-border:none;
-outline:none;
-border-radius:15px;
-background:#1e293b;
-color:white;
-font-size:16px;
-}
-
-
-button{
-width:100%;
-padding:15px;
-margin-top:12px;
-border:none;
-border-radius:20px;
-background:#FFD700;
-color:#000;
-font-weight:bold;
-font-size:16px;
-transition:.3s;
-}
-
-
-button:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px #FFD700;
-}
-
-
-.history-item{
-background:#1e293b;
-padding:15px;
-border-radius:15px;
-margin-top:10px;
-animation:fadeIn .5s;
-}
-
-
-.footer{
-text-align:center;
-margin-top:30px;
-color:#94a3b8;
-font-size:13px;
-}
-
-</style>
-
-body{
-background:#0f172a;
-color:#fff;
-padding:20px;
-}
-
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px;
-}
-
-.logo{
-font-size:28px;
-font-weight:700;
-color:#FFD700;
-}
 
 .profile{
-width:45px;
-height:45px;
-border-radius:50%;
-background:#1e293b;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:20px;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#1e293b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
+
 
 .card{
-background:#1e293b;
-padding:20px;
-border-radius:20px;
-margin-bottom:20px;
-box-shadow:0 5px 15px rgba(0,0,0,.3);
+    background:#1e293b;
+    padding:20px;
+    border-radius:20px;
+    margin-bottom:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
+
 
 .balance{
-font-size:40px;
-font-weight:bold;
-color:#FFD700;
-margin-top:10px;
+    font-size:40px;
+    font-weight:bold;
+    color:#FFD700;
 }
+
 
 .row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-top:20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:20px;
 }
+
 
 .box{
-background:#334155;
-padding:15px;
-border-radius:15px;
-text-align:center;
+    background:#334155;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
 }
+
 
 .box h3{
-font-size:14px;
-margin-bottom:10px;
+    font-size:14px;
 }
+
 
 .box p{
-font-size:22px;
-font-weight:bold;
-color:#FFD700;
+    font-size:22px;
+    font-weight:bold;
+    color:#FFD700;
 }
+
 
 .progress{
-height:14px;
-background:#475569;
-border-radius:20px;
-overflow:hidden;
-margin-top:20px;
+    height:14px;
+    background:#475569;
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
 }
+
 
 .bar{
-height:100%;
-width:0%;
-background:#FFD700;
-transition:.4s;
+    height:100%;
+    width:50%;
+    background:#FFD700;
 }
+
 
 input{
-width:100%;
-padding:15px;
-border:none;
-border-radius:12px;
-margin-top:10px;
-background:#334155;
-color:white;
-font-size:16px;
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:#334155;
+    color:white;
+    font-size:16px;
 }
+
 
 button{
-width:100%;
-padding:15px;
-margin-top:10px;
-border:none;
-border-radius:12px;
-background:#FFD700;
-font-weight:bold;
-cursor:pointer;
+    width:100%;
+    padding:15px;
+    margin-top:10px;
+    border:none;
+    border-radius:12px;
+    background:#FFD700;
+    font-weight:bold;
 }
+
 
 .history-item{
-background:#334155;
-padding:15px;
-border-radius:12px;
-margin-top:10px;
+    background:#334155;
+    padding:15px;
+    border-radius:12px;
+    margin-top:10px;
 }
 
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="header">
-<div class="logo">💰 For Life Saving</div>
-<div class="profile">👤</div>
+
+<div class="logo">
+For Life Saving
 </div>
+
+<div class="profile">
+👤
+</div>
+
+</div>
+
+
 
 <div class="card">
-<h2>বর্তমান সঞ্চয়</h2>
+
+<h3>বর্তমান সঞ্চয়</h3>
 
 <div class="balance">
-৳ <span id="total">0</span>
+৳ 0
 </div>
+
 
 <div class="row">
 
 <div class="box">
-<h3>আজ</h3>
-<p id="today">0</p>
+<h3>মোট জমা</h3>
+<p>৳ 0</p>
 </div>
+
 
 <div class="box">
-<h3>এই মাস</h3>
-<p id="month">0</p>
+<h3>এই মাসে</h3>
+<p>৳ 0</p>
 </div>
 
 </div>
+
 
 <div class="progress">
-<div class="bar" id="bar"></div>
+<div class="bar"></div>
 </div>
 
-<p id="percent">0%</p>
 
 </div>
-<div class="card">
 
-<h2>🎯 সঞ্চয়ের লক্ষ্য</h2>
 
-<input
-id="target"
-type="number"
-placeholder="লক্ষ্য টাকা">
 
-<button onclick="setTarget()">
-লক্ষ্য সেট করুন
-</button>
-
-<p id="goalText">
-লক্ষ্য সেট করা হয়নি
-</p>
-
-</div>
 
 <div class="card">
 
-<h2>💸 লেনদেন</h2>
+<h3>নতুন সঞ্চয় যোগ করুন</h3>
 
-<input
-id="amount"
-type="number"
-placeholder="টাকার পরিমাণ">
+<input type="number" placeholder="টাকার পরিমাণ">
 
-<button onclick="addMoney()">
-➕ টাকা জমা
-</button>
-
-<button onclick="expense()">
-➖ টাকা খরচ
+<button>
+জমা করুন
 </button>
 
 </div>
 
-<div class="card">
 
-<h2>📋 সাম্প্রতিক লেনদেন</h2>
 
-<div id="history">
-
-কোনো লেনদেন নেই
-
-</div>
-
-</div>
 
 <div class="card">
 
-<button onclick="logout()">
-🚪 Logout
-</button>
+<h3>সঞ্চয়ের ইতিহাস</h3>
 
-</div>
-
-<footer
-style="
-text-align:center;
-margin-top:30px;
-color:#94a3b8;
-font-size:13px;
-">
-
-For Life Saving © 2026
-
-</footer>
-
-<script>
-
-let total=0;
-let target=0;
-let history=[];
-
-function update(){
-
-document.getElementById("total").innerHTML=total;
-
-let p=target?Math.floor((total/target)*100):0;
-
-if(p>100)p=100;
-
-document.getElementById("bar").style.width=p+"%";
-
-document.getElementById("percent").innerHTML=p+"%";
-
-document.getElementById("goalText").innerHTML=
-target?
-"লক্ষ্য: ৳ "+target:
-"লক্ষ্য সেট করা হয়নি";
-
-let h="";
-
-history.forEach(item=>{
-
-h+=`
 <div class="history-item">
-
-<b>${item.type}</b>
-
-<br>
-
-৳ ${item.amount}
-
-<br>
-
-<small>${item.date}</small>
+এখনো কোনো সঞ্চয় নেই
+</div>
 
 </div>
-`;
 
-});
 
-document.getElementById("history").innerHTML=
-h||"কোনো লেনদেন নেই";
-
-}
-
-function setTarget(){
-
-target=Number(
-document.getElementById("target").value
-);
-
-update();
-
-}
-  function addMoney(){
-
-let amount=Number(
-document.getElementById("amount").value
-);
-
-if(!amount)return;
-
-total+=amount;
-
-history.unshift({
-type:"জমা",
-amount:amount,
-date:new Date().toLocaleString()
-});
-
-document.getElementById("amount").value="";
-
-update();
-
-}
-
-function expense(){
-
-let amount=Number(
-document.getElementById("amount").value
-);
-
-if(!amount)return;
-
-if(amount>total){
-
-alert("পর্যাপ্ত টাকা নেই");
-
-return;
-
-}
-
-total-=amount;
-
-history.unshift({
-type:"খরচ",
-amount:amount,
-date:new Date().toLocaleString()
-});
-
-document.getElementById("amount").value="";
-
-update();
-
-}
-
-function logout(){
-
-alert("Logout সফল হয়েছে");
-
-// পরে এখানে Firebase Logout যোগ করা হবে
-
-}
-
-update();
-
-</script>
-<script type="module" src="app.js"></script>
 </body>
 </html>
