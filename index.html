@@ -3,11 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>For Life Saving</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,69 +13,74 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f172a,#111827,#020617);
+background:#0f172a;
 color:#fff;
 padding:20px;
 }
 
 .header{
-text-align:center;
-margin-bottom:25px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
 }
 
 .logo{
-font-size:38px;
-font-weight:bold;
+font-size:28px;
+font-weight:700;
 color:#FFD700;
 }
 
-.subtitle{
-margin-top:8px;
-color:#cbd5e1;
-font-size:15px;
+.profile{
+width:45px;
+height:45px;
+border-radius:50%;
+background:#1e293b;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:20px;
 }
 
 .card{
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(15px);
-border-radius:20px;
+background:#1e293b;
 padding:20px;
-margin-bottom:18px;
-box-shadow:0 0 20px rgba(0,0,0,.3);
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
 }
 
 .balance{
-font-size:38px;
+font-size:40px;
 font-weight:bold;
 color:#FFD700;
 margin-top:10px;
 }
 
-.grid{
+.row{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:15px;
-margin-top:15px;
+margin-top:20px;
 }
 
-.small-card{
-background:rgba(255,255,255,.06);
-padding:18px;
-border-radius:18px;
+.box{
+background:#334155;
+padding:15px;
+border-radius:15px;
 text-align:center;
 }
 
-.small-card h3{
+.box h3{
 font-size:14px;
-color:#ddd;
+margin-bottom:10px;
 }
 
-.small-card p{
-margin-top:8px;
+.box p{
 font-size:22px;
 font-weight:bold;
 color:#FFD700;
@@ -85,59 +88,46 @@ color:#FFD700;
 
 .progress{
 height:14px;
-background:#1e293b;
+background:#475569;
 border-radius:20px;
 overflow:hidden;
-margin-top:15px;
+margin-top:20px;
 }
 
 .bar{
 height:100%;
 width:0%;
-background:linear-gradient(90deg,#FFD700,#ff9800);
-transition:.5s;
+background:#FFD700;
+transition:.4s;
 }
 
 input{
 width:100%;
-padding:14px;
+padding:15px;
 border:none;
-border-radius:15px;
-margin-top:12px;
-background:#1e293b;
-color:#fff;
+border-radius:12px;
+margin-top:10px;
+background:#334155;
+color:white;
 font-size:16px;
 }
 
 button{
 width:100%;
-padding:14px;
-margin-top:12px;
+padding:15px;
+margin-top:10px;
 border:none;
-border-radius:15px;
+border-radius:12px;
 background:#FFD700;
-color:#000;
-font-size:16px;
 font-weight:bold;
 cursor:pointer;
 }
 
-button:hover{
-opacity:.9;
-}
-
 .history-item{
-background:#1e293b;
+background:#334155;
 padding:15px;
-border-radius:15px;
+border-radius:12px;
 margin-top:10px;
-}
-
-.footer{
-text-align:center;
-margin-top:25px;
-color:#94a3b8;
-font-size:13px;
 }
 
 </style>
@@ -147,110 +137,149 @@ font-size:13px;
 
 <div class="header">
 <div class="logo">💰 For Life Saving</div>
-<div class="subtitle">
-স্মার্ট সঞ্চয় • সুন্দর ভবিষ্যৎ
-</div>
+<div class="profile">👤</div>
 </div>
 
 <div class="card">
-
 <h2>বর্তমান সঞ্চয়</h2>
 
 <div class="balance">
 ৳ <span id="total">0</span>
 </div>
 
-<div class="grid">
+<div class="row">
 
-<div class="small-card">
+<div class="box">
 <h3>আজ</h3>
 <p id="today">0</p>
 </div>
 
-<div class="small-card">
+<div class="box">
 <h3>এই মাস</h3>
 <p id="month">0</p>
 </div>
 
 </div>
 
-<h3 style="margin-top:20px;">
-লক্ষ্য পূরণ
-</h3>
-
 <div class="progress">
 <div class="bar" id="bar"></div>
 </div>
 
-<p id="percent"
-style="margin-top:10px;">
-0%
+<p id="percent">0%</p>
+
+</div>
+<div class="card">
+
+<h2>🎯 সঞ্চয়ের লক্ষ্য</h2>
+
+<input
+id="target"
+type="number"
+placeholder="লক্ষ্য টাকা">
+
+<button onclick="setTarget()">
+লক্ষ্য সেট করুন
+</button>
+
+<p id="goalText">
+লক্ষ্য সেট করা হয়নি
 </p>
 
 </div>
-<div class="card">
-<h2>🎯 সঞ্চয়ের লক্ষ্য</h2>
-
-<input id="target" type="number" placeholder="লক্ষ্য টাকা">
-
-<button onclick="setTarget()">লক্ষ্য সেট করুন</button>
-
-<p id="goalText">লক্ষ্য সেট করা হয়নি</p>
-</div>
 
 <div class="card">
+
 <h2>💸 লেনদেন</h2>
 
-<input id="amount" type="number" placeholder="টাকার পরিমাণ">
+<input
+id="amount"
+type="number"
+placeholder="টাকার পরিমাণ">
 
-<button onclick="addMoney()">➕ টাকা জমা</button>
+<button onclick="addMoney()">
+➕ টাকা জমা
+</button>
 
-<button onclick="expense()">➖ টাকা খরচ</button>
+<button onclick="expense()">
+➖ টাকা খরচ
+</button>
+
 </div>
 
 <div class="card">
+
 <h2>📋 সাম্প্রতিক লেনদেন</h2>
 
 <div id="history">
+
 কোনো লেনদেন নেই
-</div>
 
 </div>
 
-<div class="footer">
+</div>
+
+<div class="card">
+
+<button onclick="logout()">
+🚪 Logout
+</button>
+
+</div>
+
+<footer
+style="
+text-align:center;
+margin-top:30px;
+color:#94a3b8;
+font-size:13px;
+">
+
 For Life Saving © 2026
-</div>
+
+</footer>
 
 <script>
 
-let total=Number(localStorage.getItem("total")||0);
-let target=Number(localStorage.getItem("target")||0);
-
-let history=JSON.parse(localStorage.getItem("history")||"[]");
+let total=0;
+let target=0;
+let history=[];
 
 function update(){
 
 document.getElementById("total").innerHTML=total;
 
-let p=target?Math.min(Math.floor((total/target)*100),100):0;
+let p=target?Math.floor((total/target)*100):0;
+
+if(p>100)p=100;
 
 document.getElementById("bar").style.width=p+"%";
 
 document.getElementById("percent").innerHTML=p+"%";
 
 document.getElementById("goalText").innerHTML=
-target?"লক্ষ্য: ৳ "+target:"লক্ষ্য সেট করা হয়নি";
+target?
+"লক্ষ্য: ৳ "+target:
+"লক্ষ্য সেট করা হয়নি";
 
 let h="";
 
-history.forEach(i=>{
+history.forEach(item=>{
 
 h+=`
 <div class="history-item">
-<b>${i.type}</b><br>
-৳ ${i.amount}<br>
-<small>${i.date}</small>
-</div>`;
+
+<b>${item.type}</b>
+
+<br>
+
+৳ ${item.amount}
+
+<br>
+
+<small>${item.date}</small>
+
+</div>
+`;
 
 });
 
@@ -259,11 +288,30 @@ h||"কোনো লেনদেন নেই";
 
 }
 
-function save(){
+function setTarget(){
 
-localStorage.setItem("total",total);
-localStorage.setItem("target",target);
-localStorage.setItem("history",JSON.stringify(history));
+target=Number(
+document.getElementById("target").value
+);
+
+update();
+
+}
+  function addMoney(){
+
+let amount=Number(
+document.getElementById("amount").value
+);
+
+if(!amount)return;
+
+total+=amount;
+
+history.unshift({
+type:"জমা",
+amount:amount,
+date:new Date().toLocaleString()
+});
 
 document.getElementById("amount").value="";
 
@@ -271,47 +319,41 @@ update();
 
 }
 
-function addMoney(){
+function expense(){
 
-let a=Number(document.getElementById("amount").value);
+let amount=Number(
+document.getElementById("amount").value
+);
 
-if(!a)return;
+if(!amount)return;
 
-total+=a;
+if(amount>total){
 
-history.unshift({
-type:"জমা",
-amount:a,
-date:new Date().toLocaleString()
-});
+alert("পর্যাপ্ত টাকা নেই");
 
-save();
+return;
 
 }
 
-function expense(){
-
-let a=Number(document.getElementById("amount").value);
-
-if(!a)return;
-
-total-=a;
+total-=amount;
 
 history.unshift({
 type:"খরচ",
-amount:a,
+amount:amount,
 date:new Date().toLocaleString()
 });
 
-save();
+document.getElementById("amount").value="";
+
+update();
 
 }
 
-function setTarget(){
+function logout(){
 
-target=Number(document.getElementById("target").value);
+alert("Logout সফল হয়েছে");
 
-save();
+// পরে এখানে Firebase Logout যোগ করা হবে
 
 }
 
