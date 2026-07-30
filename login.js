@@ -1,3 +1,4 @@
+
 import { auth } from "./firebase.js";
 
 import {
@@ -9,13 +10,16 @@ from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 window.register = function(){
 
-let email =
-document.getElementById("email").value;
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value.trim();
 
-let password =
-document.getElementById("password").value;
-console.log("Email:", email);
-console.log("Password length:", password.length);
+
+if(!email || !password){
+document.getElementById("msg").innerHTML =
+"Email এবং Password দিন";
+return;
+}
+
 
 createUserWithEmailAndPassword(
 auth,
@@ -33,7 +37,7 @@ document.getElementById("msg").innerHTML =
 .catch((error)=>{
 
 document.getElementById("msg").innerHTML =
-error.message;
+error.code;
 
 });
 
@@ -43,11 +47,8 @@ error.message;
 
 window.login = function(){
 
-let email =
-document.getElementById("email").value;
-
-let password =
-document.getElementById("password").value;
+let email = document.getElementById("email").value.trim();
+let password = document.getElementById("password").value.trim();
 
 
 signInWithEmailAndPassword(
@@ -65,7 +66,7 @@ window.location.href="index.html";
 .catch((error)=>{
 
 document.getElementById("msg").innerHTML =
-error.message;
+error.code;
 
 });
 
